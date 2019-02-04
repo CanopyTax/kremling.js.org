@@ -1,0 +1,12 @@
+{
+  "root": "./docs",
+  "plugins": ["-sharing", "github", "ga"],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/CanopyTax/kremling"
+    },
+    "ga": {
+      "token": "UA-133316058-1"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "kremling.js.org",
+  "description": "documentation website for kremling",
+  "repository": "git@github.com:CanopyTax/kremling.js.org.git",
+  "author": "Joel Denning <joeldenning@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "gitbook": "gitbook",
+    "start": "rimraf _book && gitbook serve"
+  },
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-ga": "^1",
+    "gitbook-plugin-github": "^2",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {}
+}
