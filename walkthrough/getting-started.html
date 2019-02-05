@@ -1,0 +1,441 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Getting Started · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="conditional-css.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Kremling Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Walkthrough</li>
+        
+        
+    
+        <li class="chapter active" data-level="2.1" data-path="getting-started.html">
+            
+                <a href="getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="conditional-css.html">
+            
+                <a href="conditional-css.html">
+            
+                    
+                    Conditionally applying css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="using-hooks.html">
+            
+                <a href="using-hooks.html">
+            
+                    
+                    Using hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="using-components.html">
+            
+                <a href="using-components.html">
+            
+                    
+                    Using components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="build-processes.html">
+            
+                <a href="build-processes.html">
+            
+                    
+                    Preprocessing with webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api/use-css.html">
+            
+                <a href="../api/use-css.html">
+            
+                    
+                    useCss hook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api/scoped-component.html">
+            
+                <a href="../api/scoped-component.html">
+            
+                    
+                    Scoped component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api/always-maybe-and-toggle.html">
+            
+                <a href="../api/always-maybe-and-toggle.html">
+            
+                    
+                    always, maybe, and toggle
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../concepts/scoped-css.html">
+            
+                <a href="../concepts/scoped-css.html">
+            
+                    
+                    Scoped css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../concepts/namespace.html">
+            
+                <a href="../concepts/namespace.html">
+            
+                    
+                    Namespace
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Getting Started</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="getting-started-with-kremling">Getting started with Kremling</h1>
+<p>This tutorial will help you write css for your React components with kremling.</p>
+<h2 id="installation">Installation</h2>
+<p>To start, first install kremling.</p>
+<pre><code class="lang-sh">npm install --save kremling <span class="hljs-comment"># if you use npm</span>
+yarn add kremling <span class="hljs-comment"># if you use yarn</span>
+</code></pre>
+<h2 id="write-a-component">Write a component</h2>
+<p>Now, write a component using kremling. To do so, we&apos;ll use the <code>useCss</code> hook from kremling
+and write some css as a javascript string.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> {useCss, always, maybe} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> scope = useCss(css)
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container&quot;</span> {<span class="hljs-attr">...scope</span>}&gt;</span>
+      Hello world
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+
+<span class="hljs-keyword">const</span> css = <span class="hljs-string">`
+&amp; .container {
+  border: 1px solid black;
+}
+`</span>
+</code></pre>
+<p>That&apos;s it! You can now render your component and the container div will have a 1px black border. There is no configuration
+to get kremling to work -- you don&apos;t need to eject or change your webpack configuration.</p>
+<h2 id="what-is-usecss-actually-doing">What is useCss actually doing?</h2>
+<p>In the code above, we call <code>useCss(css)</code>. But what is that actually doing?</p>
+<p><a href="api/use-css.md">useCss()</a> is a <a href="https://reactjs.org/hooks" target="_blank">React hook</a> that you call with a css string.
+It returns to you an object of props that you should apply to your container dom element.
+This is called <a href="concepts/scoped-css.md">&quot;scoping the css&quot;</a>.</p>
+<h2 id="what-about-that-ampersand-in-the-css-string">What about that ampersand in the css string?</h2>
+<p>You might have noticed that in the code example there is an ampersand (<code>&amp;</code>) inside of our css string.</p>
+<p>This is how you tell kremling that you&apos;re about to write a css rule. It is necessary because kremling uses it to make sure
+that it is truly scoped and does not apply to any dom elements outside of our component and its children.
+You can read more about how this works in the <a href="concepts/scoped-css.md">scoped css documentation</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p><a href="walkthrough/conditional-css.md">Conditionally apply css</a></p>
+<p><a href="walkthrough/using-components.md">Usage without hooks</a></p>
+<p><a href="walkthrough/build-processes.md">Preprocessing with webpack</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Kremling Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="conditional-css.html" class="navigation navigation-next " aria-label="Next page: Conditionally applying css">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"2.1","depth":1,"next":{"title":"Conditionally applying css","level":"2.2","depth":1,"path":"walkthrough/conditional-css.md","ref":"walkthrough/conditional-css.md","articles":[]},"previous":{"title":"Kremling Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"walkthrough/getting-started.md","mtime":"2019-02-05T23:51:07.181Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-05T23:51:54.921Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
