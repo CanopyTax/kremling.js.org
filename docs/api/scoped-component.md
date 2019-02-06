@@ -128,3 +128,9 @@ class Child extends React.Component {
 - `children`: The direct children provided to Scoped will be modified to have extra dom attributes to do the
   [css scoping](/concepts/scoped-css.md). Direct children to Scoped should usually be dom elements, not React components.
   See the Gotcha section above.
+- `namespace`: A string that overrides the name of the dom attribute that kremling adds to your dom elements.
+  See [these docs](/walkthrough/configuration.md) for more info.
+
+#### Static properties
+You can configure the dom attributes created by Scoped by changing `Scoped.defaultNamespace`. See [these docs](/walkthrough/configuration.md) for
+more information.

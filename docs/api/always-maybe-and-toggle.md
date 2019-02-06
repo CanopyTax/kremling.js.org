@@ -5,7 +5,7 @@ They are how kremling helps you implement [conditional css](/walkthrough/conditi
 
 They are also exported in shorthand form: `a`, `m`, and `t`.
 
-You can chain calls to always, maybe and toggle: `always('foo').maybe('bar', isBar).toggle('class1', 'class2', showClass1)`
+You can chain calls to always, maybe and toggle: `always('foo').maybe('bar', isBar).toggle('class1', 'class2', showClass1)`.
 
 ## Always
 ```jsx

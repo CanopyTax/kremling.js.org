@@ -16,6 +16,8 @@
 * [always, maybe, and toggle](api/always-maybe-and-toggle.md)
 
 ## Concepts
-* [Scoped css](concepts/scoped-css.md)
-* [Unmounting css](concepts/unmounting-css.md)
 * [Naming css classes](concepts/naming-css-classes.md)
+* [Scoped css](concepts/scoped-css.md)
+* [Pseudo selectors](concepts/pseudo-selectors.md)
+* [Media queries](concepts/media-queries.md)
+* [Unmounting css](concepts/unmounting-css.md)
