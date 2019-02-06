@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="naming-css-classes.html" />
     
-    
-    <link rel="prev" href="scoped-css.html" />
+    <link rel="prev" href="media-queries.html" />
     
 
     </head>
@@ -240,7 +238,20 @@
         
         
     
-        <li class="chapter " data-level="4.1" data-path="scoped-css.html">
+        <li class="chapter " data-level="4.1" data-path="naming-css-classes.html">
+            
+                <a href="naming-css-classes.html">
+            
+                    
+                    Naming css classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="scoped-css.html">
             
                 <a href="scoped-css.html">
             
@@ -253,12 +264,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.2" data-path="unmounting-css.html">
+        <li class="chapter " data-level="4.3" data-path="pseudo-selectors.html">
             
-                <a href="unmounting-css.html">
+                <a href="pseudo-selectors.html">
             
                     
-                    Unmounting css
+                    Pseudo selectors
             
                 </a>
             
@@ -266,12 +277,25 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="naming-css-classes.html">
+        <li class="chapter " data-level="4.4" data-path="media-queries.html">
             
-                <a href="naming-css-classes.html">
+                <a href="media-queries.html">
             
                     
-                    Naming css classes
+                    Media queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.5" data-path="unmounting-css.html">
+            
+                <a href="unmounting-css.html">
+            
+                    
+                    Unmounting css
             
                 </a>
             
@@ -324,7 +348,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="unmounting-css">Unmounting css</h1>
+<p>Most React css libraries never clean up the <code>&lt;style&gt;</code> elements from the DOM. Instead, more and more
+css is appended to the dom as you load code and mount components.</p>
+<p>One distinctive feature of Kremling is that it will only append your css to the DOM when necessary.
+This means that before your components are mounted, there will not be any <code>&lt;style&gt;</code> elements
+appended to the DOM.</p>
+<p>Additionally, kremling will remove <code>&lt;style&gt;</code> elements from the DOM as soon as there are no more components
+using a css string. This is beneficial for overall DOM performance, since the browser will not have to deal
+with a continuously growing set of css rules that do not apply to anything currently in the dom.</p>
+
                                 
                                 </section>
                             
@@ -351,14 +384,10 @@
 
             
                 
-                <a href="scoped-css.html" class="navigation navigation-prev " aria-label="Previous page: Scoped css">
+                <a href="media-queries.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Media queries">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="naming-css-classes.html" class="navigation navigation-next " aria-label="Next page: Naming css classes">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -367,7 +396,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Unmounting css","level":"4.2","depth":1,"next":{"title":"Naming css classes","level":"4.3","depth":1,"path":"concepts/naming-css-classes.md","ref":"concepts/naming-css-classes.md","articles":[]},"previous":{"title":"Scoped css","level":"4.1","depth":1,"path":"concepts/scoped-css.md","ref":"concepts/scoped-css.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"concepts/unmounting-css.md","mtime":"2019-02-06T18:35:37.390Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T18:36:21.173Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Unmounting css","level":"4.5","depth":1,"previous":{"title":"Media queries","level":"4.4","depth":1,"path":"concepts/media-queries.md","ref":"concepts/media-queries.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"concepts/unmounting-css.md","mtime":"2019-02-06T19:36:36.598Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T19:37:29.431Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

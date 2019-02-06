@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Scoped css · GitBook</title>
+        <title>Media queries · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="pseudo-selectors.html" />
+    <link rel="next" href="unmounting-css.html" />
     
     
-    <link rel="prev" href="naming-css-classes.html" />
+    <link rel="prev" href="pseudo-selectors.html" />
     
 
     </head>
@@ -253,7 +253,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.2" data-path="scoped-css.html">
+        <li class="chapter " data-level="4.2" data-path="scoped-css.html">
             
                 <a href="scoped-css.html">
             
@@ -279,7 +279,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="media-queries.html">
+        <li class="chapter active" data-level="4.4" data-path="media-queries.html">
             
                 <a href="media-queries.html">
             
@@ -335,7 +335,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Scoped css</a>
+        <a href=".." >Media queries</a>
     </h1>
 </div>
 
@@ -350,48 +350,19 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="scoped-css">Scoped css</h1>
-<p>In Kremling, scoped css refers to css rules that only apply to a dom element container and all of its dom element children.</p>
-<p>This is different from global css, where css classes can be used by any code in any place.</p>
-<p>Scoped css is also different from local css, where css rules that only apply to the dom elements in a particular react component.</p>
-<h2 id="why-scoped-css">Why scoped css?</h2>
-<p>Scoped css let&apos;s us not have to worry about global css class collision while also allowing us to inherit css from parent components
-to child components if we want to. In that way, it does not try to prevent css cascading altogether, but instead allows you
-pick and choose where in the dom you want your css rules to cascade.</p>
-<p>Additionally, kremling&apos;s implementation of scoped css keeps your dom elements easy to understand at a glance, since there
-is no need to generate unique class names for css rule.</p>
-<h2 id="how-to-use-it">How to use it?</h2>
-<p><a href="../api/use-css.html">useCss hook</a></p>
-<p><a href="../api/scoped-component.html">Scoped component</a></p>
-<h2 id="how-does-this-work-under-the-hood">How does this work under the hood?</h2>
-<p>Scoped css is accomplished by changing css rules to only apply when specific dom attributes are present. Normally,
-css classes and rules are global, but when we change them to be scoped, you can have two css classes with the same name
-that will apply to different parts of the dom.</p>
-<p>Consider this HTML/CSS example, where two buttons have the same css class, but the first button is red and the second button is blue.
-<a href="https://codepen.io/joeldenning/pen/PVOzXK?editors=1100" target="_blank">Codepen example</a></p>
-<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">kremling</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-button&quot;</span>&gt;</span>First button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">kremling</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-button&quot;</span>&gt;</span>Second button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre>
-<pre><code class="lang-css"><span class="hljs-comment">/* styles.css */</span>
-<span class="hljs-selector-attr">[kremling=&quot;0&quot;]</span> <span class="hljs-selector-class">.my-button</span> {
-  <span class="hljs-attribute">background-color</span>: red;
-  <span class="hljs-attribute">color</span>: white;
+                                <h1 id="media-queries">Media queries</h1>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_blank">Media queries</a> are supported by kremling with the normal
+css syntax. Since kremling css is raw css, you can expect everything to work like normal:</p>
+<h2 id="examples">Examples</h2>
+<p>Note that ampersand in this example is not necessary if you&apos;re using <a href="../walkthrough/kremling-loader.html">kremling-loader</a>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> css = <span class="hljs-string">`
+@media (max-width: 1024px) {
+  &amp; .foo {
+    color: red;
+  }
 }
-
-<span class="hljs-selector-attr">[kremling=&quot;1&quot;]</span> <span class="hljs-selector-class">.my-button</span> {
-  <span class="hljs-attribute">background-color</span>: blue;
-  <span class="hljs-attribute">color</span>: white;
-}
+`</span>
 </code></pre>
-<h2 id="previous-work">Previous work</h2>
-<p>Scoped css is not an idea invented by the authors of Kremling. The <a href="https://svelte.technology/" target="_blank">Svelte</a> framework, along with a variety
-of other css libraries, already use this.</p>
 
                                 
                                 </section>
@@ -419,12 +390,12 @@ of other css libraries, already use this.</p>
 
             
                 
-                <a href="naming-css-classes.html" class="navigation navigation-prev " aria-label="Previous page: Naming css classes">
+                <a href="pseudo-selectors.html" class="navigation navigation-prev " aria-label="Previous page: Pseudo selectors">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="pseudo-selectors.html" class="navigation navigation-next " aria-label="Next page: Pseudo selectors">
+                <a href="unmounting-css.html" class="navigation navigation-next " aria-label="Next page: Unmounting css">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -435,7 +406,7 @@ of other css libraries, already use this.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Scoped css","level":"4.2","depth":1,"next":{"title":"Pseudo selectors","level":"4.3","depth":1,"path":"concepts/pseudo-selectors.md","ref":"concepts/pseudo-selectors.md","articles":[]},"previous":{"title":"Naming css classes","level":"4.1","depth":1,"path":"concepts/naming-css-classes.md","ref":"concepts/naming-css-classes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"concepts/scoped-css.md","mtime":"2019-02-06T19:36:36.598Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T19:37:29.431Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Media queries","level":"4.4","depth":1,"next":{"title":"Unmounting css","level":"4.5","depth":1,"path":"concepts/unmounting-css.md","ref":"concepts/unmounting-css.md","articles":[]},"previous":{"title":"Pseudo selectors","level":"4.3","depth":1,"path":"concepts/pseudo-selectors.md","ref":"concepts/pseudo-selectors.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"concepts/media-queries.md","mtime":"2019-02-06T19:36:36.594Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T19:37:29.431Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
