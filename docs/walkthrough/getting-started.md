@@ -11,7 +11,7 @@ yarn add kremling # if you use yarn
 ```
 
 ## Write a component
-Now, write a component using kremling. To do so, we'll use the `useCss` hook from kremling
+Now, write a component using kremling. To do so, we'll use the [`useCss` hook](/api/use-css.md) from kremling
 and write some css as a javascript string.
 
 ```js
