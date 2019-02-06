@@ -5,9 +5,9 @@
 ## Walkthrough
 * [Getting Started](walkthrough/getting-started.md)
 * [Conditionally apply css](walkthrough/conditional-css.md)
-* [Using hooks](/api/use-css.md)
-* [Class components](/api/scoped-component.md)
-* [Kremling loader](/walkthrough/kremling-loader.md)
+* [Using hooks](api/use-css.md)
+* [Class components](api/scoped-component.md)
+* [Kremling loader](walkthrough/kremling-loader.md)
 * [Configuration](walkthrough/configuration.md)
 
 ## API

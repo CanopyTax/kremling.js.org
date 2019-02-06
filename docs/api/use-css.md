@@ -125,7 +125,7 @@ function DontDoThis() {
 }
 
 function Child(props) {
-  // The child-class css class will not be defined in the dom.
+  // The child-class css class will not be applied to this div.
   return (
     <div className="child-class">
       Child
@@ -146,6 +146,11 @@ const css = `
 The useCss hook is called with one argument and returns an object.
 
 #### Arguments
-- `css`: A string of css, or a PostCSS object created through [kremling-loader](/walkthrough/kremling-loader.md).
+- `css`: A string of css, or a PostCSS object created through [kremling-loader](/walkthrough/kremling-loader.md). CSS
+  strings must have ampersand (`&`) characters before every css selector. The css will be appended to the dom when your
+  component is mounted, and will be removed from the dom when the component unmounts. Changing the css that is passed
+  into useCss() is a supported feature - a new css scope will be created for the new css.
 
-- 
+#### Return value
+useCss returns an object of React props that you should apply to dom element containers. The container and any elements inside
+of the container will be "in scope" and have access to your css rules.
