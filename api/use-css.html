@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>useCss hook · GitBook</title>
+        <title>Using hooks · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -60,7 +60,7 @@
     <link rel="next" href="scoped-component.html" />
     
     
-    <link rel="prev" href="../walkthrough/configuration.html" />
+    <link rel="prev" href="../walkthrough/conditional-css.html" />
     
 
     </head>
@@ -127,7 +127,7 @@
                 <a href="../walkthrough/conditional-css.html">
             
                     
-                    Conditionally applying css
+                    Conditionally apply css
             
                 </a>
             
@@ -135,9 +135,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="../walkthrough/using-hooks.html">
+        <li class="chapter active" data-level="2.3" data-path="use-css.html">
             
-                <a href="../walkthrough/using-hooks.html">
+                <a href="use-css.html">
             
                     
                     Using hooks
@@ -148,12 +148,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../walkthrough/using-components.html">
+        <li class="chapter " data-level="2.4" data-path="scoped-component.html">
             
-                <a href="../walkthrough/using-components.html">
+                <a href="scoped-component.html">
             
                     
-                    Using components
+                    Class components
             
                 </a>
             
@@ -161,12 +161,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../walkthrough/build-processes.html">
+        <li class="chapter " data-level="2.5" data-path="../walkthrough/kremling-loader.html">
             
-                <a href="../walkthrough/build-processes.html">
+                <a href="../walkthrough/kremling-loader.html">
             
                     
-                    Preprocessing with webpack
+                    Kremling loader
             
                 </a>
             
@@ -253,12 +253,25 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../concepts/namespace.html">
+        <li class="chapter " data-level="4.2" data-path="../concepts/unmounting-css.html">
             
-                <a href="../concepts/namespace.html">
+                <a href="../concepts/unmounting-css.html">
             
                     
-                    Namespace
+                    Unmounting css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../concepts/naming-css-classes.html">
+            
+                <a href="../concepts/naming-css-classes.html">
+            
+                    
+                    Naming css classes
             
                 </a>
             
@@ -296,7 +309,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >useCss hook</a>
+        <a href=".." >Using hooks</a>
     </h1>
 </div>
 
@@ -312,6 +325,140 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="usecss-hook">useCss hook</h1>
+<p>Kremling exports a <a href="https://reactjs.org/hooks" target="_blank">react hook</a> called <code>useCss</code>, which you use in your components.
+To do so, first make sure that your version of react is at least <code>react@16.8.0</code>.</p>
+<p>Since hooks only work with function components, you won&apos;t be able to call <code>useCss</code> in your class components.
+Instead, check out <a href="scoped-component.html">Scoped component</a>, which is an alternative
+that works great with classes.</p>
+<h2 id="basic-example">Basic Example</h2>
+<p>The useCss hook allows you to write css that will only apply to your component and to its children.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> scope = useCss(css)
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...scope</span>} <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;my-button&quot;</span>&gt;</span>
+        Button
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+
+<span class="hljs-keyword">const</span> css = <span class="hljs-string">`
+&amp; .container {
+  border: 1px solid black;
+}
+
+&amp; .my-button {
+  background-color: lawngreen;
+}
+`</span>
+</code></pre>
+<p>In this example, the <code>container</code> and <code>my-button</code> classes will work great for MyComponent, but cannot be
+accessed by any sibling or parent components. This is what kremling calls <a href="../concepts/scoped-css.html">scoped css</a>.</p>
+<p>One thing to note is that we&apos;re able to use the <code>my-button</code> css class without putting the <code>{...scope}</code> props onto the
+<code>&lt;button&gt;</code>. This is because you only need to be able to put <code>{...scope}</code> on your container elements, and the inner elements
+will already be in scope. See the <a href="../concepts/scoped-css.html">scoped css docs</a> for more information.</p>
+<h2 id="fragments">Fragments</h2>
+<p>When you return a fragment from a component, you&apos;ll often have two or more elements inside of the fragment. In such cases,
+do not try to put the css scope onto the fragment, but instead on each of the elements inside of the fragment:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Mario</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> scope = useCss(css)
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...scope</span>} <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;my-div&quot;</span>&gt;</span>
+        A div
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> {<span class="hljs-attr">...scope</span>} <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;my-span&quot;</span>&gt;</span>
+        A span
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span>
+  )
+}
+
+const css = `
+&amp; .my-div {
+  border: 1px solid red;
+}
+
+&amp; .my-span {
+  border: 1px solid blue;
+}
+`
+</span></code></pre>
+<h2 id="advanced-example">Advanced Example</h2>
+<p>Since css scopes apply to all dom elements in your component <em>and in children components</em>, you can define common css
+in a parent component that is used by all children.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...scope</span>}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Child</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  )
+}
+
+function Child() {
+  // The child-button class is &quot;in scope&quot;
+  return (
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;child-button&quot;</span>&gt;</span>Child<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  )
+}
+
+const css = `
+&amp; .child-button {
+  background-color: blue;
+}
+`
+</span></code></pre>
+<h2 id="can-i-apply-a-css-scope-to-a-react-component-instead-of-a-dom-element">Can I apply a css scope to a React component (instead of a dom element)?</h2>
+<p>No you cannot. The props in the <code>scope</code> object need to be put into the dom. For example,
+the following code will not work:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">DontDoThis</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> scope = useCss(css)
+
+  <span class="hljs-comment">// Scope should only be applied to dom elements, not components</span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Child</span> {<span class="hljs-attr">...scope</span>} /&gt;</span>
+  )
+}
+
+function Child(props) {
+  // The child-class css class will not be defined in the dom.
+  return (
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;child-class&quot;</span>&gt;</span>
+      Child
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  )
+}
+
+const css = `
+&amp; .child-class {
+  color: lawngreen;
+}
+`
+</span></code></pre>
+<h2 id="api">API</h2>
+<p><code>const scope = useCss(css)</code></p>
+<p>The useCss hook is called with one argument and returns an object.</p>
+<h4 id="arguments">Arguments</h4>
+<ul>
+<li><p><code>css</code>: A string of css, or a PostCSS object created through <a href="../walkthrough/kremling-loader.html">kremling-loader</a>.</p>
+</li>
+<li></li>
+</ul>
 
                                 
                                 </section>
@@ -339,12 +486,12 @@
 
             
                 
-                <a href="../walkthrough/configuration.html" class="navigation navigation-prev " aria-label="Previous page: Configuration">
+                <a href="../walkthrough/conditional-css.html" class="navigation navigation-prev " aria-label="Previous page: Conditionally apply css">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="scoped-component.html" class="navigation navigation-next " aria-label="Next page: Scoped component">
+                <a href="scoped-component.html" class="navigation navigation-next " aria-label="Next page: Class components">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -355,7 +502,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"useCss hook","level":"3.1","depth":1,"next":{"title":"Scoped component","level":"3.2","depth":1,"path":"api/scoped-component.md","ref":"api/scoped-component.md","articles":[]},"previous":{"title":"Configuration","level":"2.6","depth":1,"path":"walkthrough/configuration.md","ref":"walkthrough/configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"api/use-css.md","mtime":"2019-02-06T00:01:33.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T00:02:18.896Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using hooks","level":"2.3","depth":1,"next":{"title":"Class components","level":"2.4","depth":1,"path":"api/scoped-component.md","ref":"api/scoped-component.md","articles":[]},"previous":{"title":"Conditionally apply css","level":"2.2","depth":1,"path":"walkthrough/conditional-css.md","ref":"walkthrough/conditional-css.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"api/use-css.md","mtime":"2019-02-06T17:19:24.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T17:20:14.746Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

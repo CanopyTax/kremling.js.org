@@ -125,7 +125,7 @@
                 <a href="walkthrough/conditional-css.html">
             
                     
-                    Conditionally applying css
+                    Conditionally apply css
             
                 </a>
             
@@ -133,9 +133,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="walkthrough/using-hooks.html">
+        <li class="chapter " data-level="2.3" data-path="api/use-css.html">
             
-                <a href="walkthrough/using-hooks.html">
+                <a href="api/use-css.html">
             
                     
                     Using hooks
@@ -146,12 +146,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="walkthrough/using-components.html">
+        <li class="chapter " data-level="2.4" data-path="api/scoped-component.html">
             
-                <a href="walkthrough/using-components.html">
+                <a href="api/scoped-component.html">
             
                     
-                    Using components
+                    Class components
             
                 </a>
             
@@ -159,12 +159,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="walkthrough/build-processes.html">
+        <li class="chapter " data-level="2.5" data-path="walkthrough/kremling-loader.html">
             
-                <a href="walkthrough/build-processes.html">
+                <a href="walkthrough/kremling-loader.html">
             
                     
-                    Preprocessing with webpack
+                    Kremling loader
             
                 </a>
             
@@ -251,12 +251,25 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="concepts/namespace.html">
+        <li class="chapter " data-level="4.2" data-path="concepts/unmounting-css.html">
             
-                <a href="concepts/namespace.html">
+                <a href="concepts/unmounting-css.html">
             
                     
-                    Namespace
+                    Unmounting css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="concepts/naming-css-classes.html">
+            
+                <a href="concepts/naming-css-classes.html">
+            
+                    
+                    Naming css classes
             
                 </a>
             
@@ -310,7 +323,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="kremling">Kremling</h1>
-<p>Kremling is an npm library for doing css with React. It uses <a href="https://reactjs.org/hooks" target="_blank">React hooks</a>, is only 4kb gzipped,
+<p>Kremling is an npm library for writing css with React. It uses <a href="https://reactjs.org/hooks" target="_blank">React hooks</a>, is only 4kb gzipped,
 and requires no changes to your webpack config or build process.</p>
 <p><a href="https://github.com/CanopyTax/kremling" target="_blank">Kremling Github page</a></p>
 <p><a href="walkthrough/getting-started.html">Walkthrough</a></p>
@@ -330,6 +343,35 @@ and requires no changes to your webpack config or build process.</p>
 }
 
 <span class="hljs-keyword">const</span> css = <span class="hljs-string">`
+/* your css classes are scoped for this component and its children components */
+&amp; .container {
+  border: 1px solid lightgray;
+}
+
+&amp; .big-button {
+  width: 40px;
+  height: 60px;
+}
+`</span>
+</code></pre>
+<h2 id="class-component-example">Class component example</h2>
+<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {Scoped} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnotherComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Scoped</span> <span class="hljs-attr">css</span>=<span class="hljs-string">{css}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;big-button&quot;</span>&gt;</span>
+            A big button
+          <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Scoped</span>&gt;</span></span>
+    )
+  }
+}
+
+<span class="hljs-keyword">const</span> css = <span class="hljs-string">`
 &amp; .container {
   border: 1px solid lightgray;
 }
@@ -343,7 +385,7 @@ and requires no changes to your webpack config or build process.</p>
 <h2 id="conditional-css">Conditional css</h2>
 <pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {always, maybe} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyButton</span>(<span class="hljs-params">props</span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ClickHere</span>(<span class="hljs-params">props</span>) </span>{
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>
       <span class="hljs-attr">className</span>=<span class="hljs-string">{always(&apos;click-here&apos;).maybe(&apos;already-clicked&apos;,</span> <span class="hljs-attr">props.wasClicked</span>)}
@@ -354,31 +396,25 @@ and requires no changes to your webpack config or build process.</p>
   )
 }
 </code></pre>
-<h2 id="components-example">Components example</h2>
-<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {Scoped} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+<h2 id="separate-css-file">Separate css file</h2>
+<pre><code class="lang-js"><span class="hljs-comment">// foo.js</span>
+<span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;bandicoot&apos;</span>
+<span class="hljs-keyword">import</span> css <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./foo.css&apos;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AnotherComponent</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> scope = useCss(css)
+
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Scoped</span> <span class="hljs-attr">css</span>=<span class="hljs-string">{css}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;big-button&quot;</span>&gt;</span>
-          A big button
-        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">Scoped</span>&gt;</span></span>
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> {<span class="hljs-attr">...scope</span>} <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>
+      Hello
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
   )
 }
-
-<span class="hljs-keyword">const</span> css = <span class="hljs-string">`
-&amp; .container {
-  border: 1px solid lightgray;
+</code></pre>
+<pre><code class="lang-css"><span class="hljs-comment">/* foo.css */</span>
+<span class="hljs-selector-class">.foo</span> {
+  <span class="hljs-attribute">color</span>: lawngreen;
 }
-
-&amp; .big-button {
-  width: 40px;
-  height: 60px;
-}
-`</span>
 </code></pre>
 <h2 id="motivation">Motivation</h2>
 <p>Here are the principles behind Kremling&apos;s css.</p>
@@ -427,7 +463,7 @@ and requires no changes to your webpack config or build process.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Kremling Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"2.1","depth":1,"path":"walkthrough/getting-started.md","ref":"walkthrough/getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2019-02-06T00:01:33.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T00:02:18.896Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Kremling Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"2.1","depth":1,"path":"walkthrough/getting-started.md","ref":"walkthrough/getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2019-02-06T17:19:24.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T17:20:14.746Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

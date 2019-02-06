@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Using hooks · GitBook</title>
+        <title>Kremling loader · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="using-components.html" />
+    <link rel="next" href="configuration.html" />
     
     
-    <link rel="prev" href="conditional-css.html" />
+    <link rel="prev" href="../api/scoped-component.html" />
     
 
     </head>
@@ -127,7 +127,7 @@
                 <a href="conditional-css.html">
             
                     
-                    Conditionally applying css
+                    Conditionally apply css
             
                 </a>
             
@@ -135,9 +135,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="using-hooks.html">
+        <li class="chapter " data-level="2.3" data-path="../api/use-css.html">
             
-                <a href="using-hooks.html">
+                <a href="../api/use-css.html">
             
                     
                     Using hooks
@@ -148,12 +148,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="using-components.html">
+        <li class="chapter " data-level="2.4" data-path="../api/scoped-component.html">
             
-                <a href="using-components.html">
+                <a href="../api/scoped-component.html">
             
                     
-                    Using components
+                    Class components
             
                 </a>
             
@@ -161,12 +161,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="build-processes.html">
+        <li class="chapter active" data-level="2.5" data-path="kremling-loader.html">
             
-                <a href="build-processes.html">
+                <a href="kremling-loader.html">
             
                     
-                    Preprocessing with webpack
+                    Kremling loader
             
                 </a>
             
@@ -253,12 +253,25 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../concepts/namespace.html">
+        <li class="chapter " data-level="4.2" data-path="../concepts/unmounting-css.html">
             
-                <a href="../concepts/namespace.html">
+                <a href="../concepts/unmounting-css.html">
             
                     
-                    Namespace
+                    Unmounting css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../concepts/naming-css-classes.html">
+            
+                <a href="../concepts/naming-css-classes.html">
+            
+                    
+                    Naming css classes
             
                 </a>
             
@@ -296,7 +309,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Using hooks</a>
+        <a href=".." >Kremling loader</a>
     </h1>
 </div>
 
@@ -311,7 +324,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="using-hooks">Using hooks</h1>
+                                <h1 id="kremling-loader">Kremling loader</h1>
+<p>If you&apos;d like to preprocess your css with <a href="https://postcss.org/" target="_blank">PostCSS</a> (for <a href="https://github.com/postcss/autoprefixer" target="_blank">autoprefixer</a> or anything else),
+you&apos;ll need to add <a href="https://github.com/CanopyTax/kremling-loader" target="_blank">kremling-loader</a> to your
+wepback config. To do so, follow the <a href="https://github.com/CanopyTax/kremling-loader" target="_blank">kremling-loader instructions</a>.</p>
+<h2 id="example">Example</h2>
+<p>Once you&apos;ve set up kremling-loader, here is how you can write components with kremling css:</p>
+<h4 id="yoshijs">yoshi.js</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> css <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./yoshi.css&apos;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Yoshi</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> scope = useCss(css)
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...scope</span>} <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;yoshi-description&quot;</span>&gt;</span>
+        Yoshi is a fictional dinosaur who, although intelligent,
+        is enslaved by a human plumber named Mario.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+</code></pre>
+<h4 id="yoshicss">yoshi.css</h4>
+<pre><code class="lang-css"><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;
+}
+
+<span class="hljs-selector-class">.yoshi-description</span> {
+  <span class="hljs-attribute">color</span>: green;
+}
+</code></pre>
+<h2 id="advantages">Advantages</h2>
+<p>Using kremling-loader allows you to omit the <code>&amp;</code> in your css rules, since the css will be processed at build time instead of in the browser.</p>
+<p>Additionally, since kremling-loader requires your css to be in a different file than your javascript code, you&apos;ll get nicer syntax highlighting in
+your IDE.</p>
+<h2 id="disavantages">Disavantages</h2>
+<p>If you&apos;re using <a href="https://facebook.github.io/create-react-app/" target="_blank">create react app</a>, you&apos;ll have to eject your webpack configuration in order to add kremling-loader to it.</p>
+<p>Additionally, you&apos;ll have to create a separate css file for each of your react components, instead of having everything the entire component encapsulated in one file.</p>
 
                                 
                                 </section>
@@ -339,12 +391,12 @@
 
             
                 
-                <a href="conditional-css.html" class="navigation navigation-prev " aria-label="Previous page: Conditionally applying css">
+                <a href="../api/scoped-component.html" class="navigation navigation-prev " aria-label="Previous page: Class components">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="using-components.html" class="navigation navigation-next " aria-label="Next page: Using components">
+                <a href="configuration.html" class="navigation navigation-next " aria-label="Next page: Configuration">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -355,7 +407,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using hooks","level":"2.3","depth":1,"next":{"title":"Using components","level":"2.4","depth":1,"path":"walkthrough/using-components.md","ref":"walkthrough/using-components.md","articles":[]},"previous":{"title":"Conditionally applying css","level":"2.2","depth":1,"path":"walkthrough/conditional-css.md","ref":"walkthrough/conditional-css.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"walkthrough/using-hooks.md","mtime":"2019-02-06T00:01:33.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T00:02:18.896Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Kremling loader","level":"2.5","depth":1,"next":{"title":"Configuration","level":"2.6","depth":1,"path":"walkthrough/configuration.md","ref":"walkthrough/configuration.md","articles":[]},"previous":{"title":"Class components","level":"2.4","depth":1,"path":"api/scoped-component.md","ref":"api/scoped-component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"walkthrough/kremling-loader.md","mtime":"2019-02-06T17:19:24.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T17:20:14.746Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

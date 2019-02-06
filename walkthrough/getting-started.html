@@ -127,7 +127,7 @@
                 <a href="conditional-css.html">
             
                     
-                    Conditionally applying css
+                    Conditionally apply css
             
                 </a>
             
@@ -135,9 +135,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="using-hooks.html">
+        <li class="chapter " data-level="2.3" data-path="../api/use-css.html">
             
-                <a href="using-hooks.html">
+                <a href="../api/use-css.html">
             
                     
                     Using hooks
@@ -148,12 +148,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="using-components.html">
+        <li class="chapter " data-level="2.4" data-path="../api/scoped-component.html">
             
-                <a href="using-components.html">
+                <a href="../api/scoped-component.html">
             
                     
-                    Using components
+                    Class components
             
                 </a>
             
@@ -161,12 +161,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="build-processes.html">
+        <li class="chapter " data-level="2.5" data-path="kremling-loader.html">
             
-                <a href="build-processes.html">
+                <a href="kremling-loader.html">
             
                     
-                    Preprocessing with webpack
+                    Kremling loader
             
                 </a>
             
@@ -253,12 +253,25 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../concepts/namespace.html">
+        <li class="chapter " data-level="4.2" data-path="../concepts/unmounting-css.html">
             
-                <a href="../concepts/namespace.html">
+                <a href="../concepts/unmounting-css.html">
             
                     
-                    Namespace
+                    Unmounting css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../concepts/naming-css-classes.html">
+            
+                <a href="../concepts/naming-css-classes.html">
+            
+                    
+                    Naming css classes
             
                 </a>
             
@@ -341,20 +354,24 @@ and write some css as a javascript string.</p>
 </code></pre>
 <p>That&apos;s it! You can now render your component and the container div will have a 1px black border. There is no configuration
 to get kremling to work -- you don&apos;t need to eject or change your webpack configuration.</p>
+<h2 id="do-i-have-to-use-hooks">Do I have to use hooks?</h2>
+<p>No, you can also use kremling&apos;s <a href="../api/scoped-component.html">Scoped component</a> to get similar functionality.</p>
 <h2 id="what-is-usecss-actually-doing">What is useCss actually doing?</h2>
 <p>In the code above, we call <code>useCss(css)</code>. But what is that actually doing?</p>
-<p><a href="api/use-css.md">useCss()</a> is a <a href="https://reactjs.org/hooks" target="_blank">React hook</a> that you call with a css string.
+<p><a href="../api/use-css.html">useCss()</a> is a <a href="https://reactjs.org/hooks" target="_blank">React hook</a> that you call with a css string.
 It returns to you an object of props that you should apply to your container dom element.
-This is called <a href="concepts/scoped-css.md">&quot;scoping the css&quot;</a>.</p>
+This is called <a href="../concepts/scoped-css.html">&quot;scoping the css&quot;</a>.</p>
 <h2 id="what-about-that-ampersand-in-the-css-string">What about that ampersand in the css string?</h2>
-<p>You might have noticed that in the code example there is an ampersand (<code>&amp;</code>) inside of our css string.</p>
+<p>You might have noticed that in the code example that there is an ampersand (<code>&amp;</code>) inside of our css string.</p>
 <p>This is how you tell kremling that you&apos;re about to write a css rule. It is necessary because kremling uses it to make sure
 that it is truly scoped and does not apply to any dom elements outside of our component and its children.
-You can read more about how this works in the <a href="concepts/scoped-css.md">scoped css documentation</a>.</p>
+You can read more about how this works in the <a href="../concepts/scoped-css.html">scoped css documentation</a>.</p>
+<p>If you don&apos;t like having to put in the <code>&amp;</code>, you can pull out your css into a separate file and use the kremling-loader webpack loader to process
+your css during your build. See the <a href="kremling-loader.html">kremling-loader docs</a> for more information.</p>
 <h2 id="next-steps">Next steps</h2>
-<p><a href="walkthrough/conditional-css.md">Conditionally apply css</a></p>
-<p><a href="walkthrough/using-components.md">Usage without hooks</a></p>
-<p><a href="walkthrough/build-processes.md">Preprocessing with webpack</a></p>
+<p><a href="conditional-css.html">Conditionally apply css</a></p>
+<p><a href="../api/use-css.html">useCss docs</a></p>
+<p><a href="../api/scoped-component.html">Usage without hooks</a></p>
 
                                 
                                 </section>
@@ -387,7 +404,7 @@ You can read more about how this works in the <a href="concepts/scoped-css.md">s
                 </a>
                 
                 
-                <a href="conditional-css.html" class="navigation navigation-next " aria-label="Next page: Conditionally applying css">
+                <a href="conditional-css.html" class="navigation navigation-next " aria-label="Next page: Conditionally apply css">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -398,7 +415,7 @@ You can read more about how this works in the <a href="concepts/scoped-css.md">s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"2.1","depth":1,"next":{"title":"Conditionally applying css","level":"2.2","depth":1,"path":"walkthrough/conditional-css.md","ref":"walkthrough/conditional-css.md","articles":[]},"previous":{"title":"Kremling Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"walkthrough/getting-started.md","mtime":"2019-02-06T00:01:33.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T00:02:18.896Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"2.1","depth":1,"next":{"title":"Conditionally apply css","level":"2.2","depth":1,"path":"walkthrough/conditional-css.md","ref":"walkthrough/conditional-css.md","articles":[]},"previous":{"title":"Kremling Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"walkthrough/getting-started.md","mtime":"2019-02-06T17:19:24.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T17:20:14.746Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
