@@ -1,10 +1,18 @@
 # Kremling
-Kremling is an npm library for writing css with React. It uses [React hooks](https://reactjs.org/hooks), is only 4kb gzipped,
+Kremling is an npm library for writing CSS with React. It uses [React hooks](https://reactjs.org/hooks), is only 4kb gzipped,
 and requires no changes to your webpack config or build process.
 
 [Kremling Github page](https://github.com/CanopyTax/kremling)
 
 [Walkthrough](/walkthrough/getting-started.md)
+
+## Motivation
+Here are the principles behind Kremling's CSS.
+
+1. [**Scoped CSS**](concepts/scoped-css.md). Have CSS rules apply to a component and its children, but no other components. Allow for cascading rules within a "scope".
+2. **Make it easy to [conditionally apply CSS](walkthrough/conditional-css.md)**. We can do better than ternaries for changing a dom element's CSS classes.
+3. **Remove unused CSS from the DOM**. When there are no more components that are using a CSS class, the `<style>` element for those components should be removed from the DOM.
+4. **Readable class names**. In your browser dev tools, `<div class="card">` is easier to understand than `<div class="23fgh_es56_card">`.
 
 ## Hooks example
 ```jsx
@@ -23,7 +31,7 @@ function MyComponent() {
 }
 
 const css = `
-/* your css classes are scoped for this component and its children components */
+/* your CSS classes are scoped for this component and its children components */
 & .container {
   border: 1px solid lightgray;
 }
@@ -65,7 +73,7 @@ const css = `
 `
 ```
 
-## Conditional css
+## Conditional CSS
 ```jsx
 import {always, maybe} from 'kremling'
 
@@ -81,7 +89,7 @@ function ClickHere(props) {
 }
 ```
 
-## Separate css file
+## Separate CSS file
 ```js
 // foo.js
 import {useCss} from 'bandicoot'
@@ -104,11 +112,3 @@ function Foo(props) {
   color: lawngreen;
 }
 ```
-
-## Motivation
-Here are the principles behind Kremling's css.
-
-1. [**Scoped css**](concepts/scoped-css.md). Have css rules apply to a component and its children, but no other components. Allow for cascading rules within a "scope".
-2. **Make it easy to [conditionally apply css](walkthrough/conditional-css.md)**. We can do better than ternaries for changing a dom element's css classes.
-3. **Remove unused css from the DOM**. When there are no more components that are using a css class, the `<style>` element for those components should be removed from the DOM.
-4. **Readable class names**. In your browser dev tools, `<div class="card">` is easier to understand than `<div class="23fgh_es56_card">`.
