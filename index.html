@@ -323,10 +323,18 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="kremling">Kremling</h1>
-<p>Kremling is an npm library for writing css with React. It uses <a href="https://reactjs.org/hooks" target="_blank">React hooks</a>, is only 4kb gzipped,
+<p>Kremling is an npm library for writing CSS with React. It uses <a href="https://reactjs.org/hooks" target="_blank">React hooks</a>, is only 4kb gzipped,
 and requires no changes to your webpack config or build process.</p>
 <p><a href="https://github.com/CanopyTax/kremling" target="_blank">Kremling Github page</a></p>
 <p><a href="walkthrough/getting-started.html">Walkthrough</a></p>
+<h2 id="motivation">Motivation</h2>
+<p>Here are the principles behind Kremling&apos;s CSS.</p>
+<ol>
+<li><a href="concepts/scoped-css.html"><strong>Scoped CSS</strong></a>. Have CSS rules apply to a component and its children, but no other components. Allow for cascading rules within a &quot;scope&quot;.</li>
+<li><strong>Make it easy to <a href="walkthrough/conditional-css.html">conditionally apply CSS</a></strong>. We can do better than ternaries for changing a dom element&apos;s CSS classes.</li>
+<li><strong>Remove unused CSS from the DOM</strong>. When there are no more components that are using a CSS class, the <code>&lt;style&gt;</code> element for those components should be removed from the DOM.</li>
+<li><strong>Readable class names</strong>. In your browser dev tools, <code>&lt;div class=&quot;card&quot;&gt;</code> is easier to understand than <code>&lt;div class=&quot;23fgh_es56_card&quot;&gt;</code>.</li>
+</ol>
 <h2 id="hooks-example">Hooks example</h2>
 <pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
 
@@ -343,7 +351,7 @@ and requires no changes to your webpack config or build process.</p>
 }
 
 <span class="hljs-keyword">const</span> css = <span class="hljs-string">`
-/* your css classes are scoped for this component and its children components */
+/* your CSS classes are scoped for this component and its children components */
 &amp; .container {
   border: 1px solid lightgray;
 }
@@ -382,7 +390,7 @@ and requires no changes to your webpack config or build process.</p>
 }
 `</span>
 </code></pre>
-<h2 id="conditional-css">Conditional css</h2>
+<h2 id="conditional-css">Conditional CSS</h2>
 <pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {always, maybe} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ClickHere</span>(<span class="hljs-params">props</span>) </span>{
@@ -396,7 +404,7 @@ and requires no changes to your webpack config or build process.</p>
   )
 }
 </code></pre>
-<h2 id="separate-css-file">Separate css file</h2>
+<h2 id="separate-css-file">Separate CSS file</h2>
 <pre><code class="lang-js"><span class="hljs-comment">// foo.js</span>
 <span class="hljs-keyword">import</span> {useCss} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;bandicoot&apos;</span>
 <span class="hljs-keyword">import</span> css <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./foo.css&apos;</span>
@@ -416,14 +424,6 @@ and requires no changes to your webpack config or build process.</p>
   <span class="hljs-attribute">color</span>: lawngreen;
 }
 </code></pre>
-<h2 id="motivation">Motivation</h2>
-<p>Here are the principles behind Kremling&apos;s css.</p>
-<ol>
-<li><a href="concepts/scoped-css.html"><strong>Scoped css</strong></a>. Have css rules apply to a component and its children, but no other components. Allow for cascading rules within a &quot;scope&quot;.</li>
-<li><strong>Make it easy to <a href="walkthrough/conditional-css.html">conditionally apply css</a></strong>. We can do better than ternaries for changing a dom element&apos;s css classes.</li>
-<li><strong>Remove unused css from the DOM</strong>. When there are no more components that are using a css class, the <code>&lt;style&gt;</code> element for those components should be removed from the DOM.</li>
-<li><strong>Readable class names</strong>. In your browser dev tools, <code>&lt;div class=&quot;card&quot;&gt;</code> is easier to understand than <code>&lt;div class=&quot;23fgh_es56_card&quot;&gt;</code>.</li>
-</ol>
 
                                 
                                 </section>
@@ -463,7 +463,7 @@ and requires no changes to your webpack config or build process.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Kremling Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"2.1","depth":1,"path":"walkthrough/getting-started.md","ref":"walkthrough/getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2019-02-06T17:19:24.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T17:20:14.746Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Kremling Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"2.1","depth":1,"path":"walkthrough/getting-started.md","ref":"walkthrough/getting-started.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2019-02-06T18:34:22.512Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T18:35:09.418Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
