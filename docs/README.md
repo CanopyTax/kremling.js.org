@@ -1,5 +1,5 @@
 # Kremling
-Kremling is an npm library for doing css with React. It uses [React hooks](https://reactjs.org/hooks), is only 4kb gzipped,
+Kremling is an npm library for writing css with React. It uses [React hooks](https://reactjs.org/hooks), is only 4kb gzipped,
 and requires no changes to your webpack config or build process.
 
 [Kremling Github page](https://github.com/CanopyTax/kremling)
@@ -23,6 +23,37 @@ function MyComponent() {
 }
 
 const css = `
+/* your css classes are scoped for this component and its children components */
+& .container {
+  border: 1px solid lightgray;
+}
+
+& .big-button {
+  width: 40px;
+  height: 60px;
+}
+`
+```
+
+## Class component example
+```jsx
+import {Scoped} from 'kremling'
+
+class AnotherComponent extends React.Component {
+  render() {
+    return (
+      <Scoped css={css}>
+        <div className="container">
+          <button className="big-button">
+            A big button
+          </button>
+        </div>
+      </Scoped>
+    )
+  }
+}
+
+const css = `
 & .container {
   border: 1px solid lightgray;
 }
@@ -38,7 +69,7 @@ const css = `
 ```jsx
 import {always, maybe} from 'kremling'
 
-function FancyButton(props) {
+function ClickHere(props) {
   return (
     <button
       className={always('click-here').maybe('already-clicked', props.wasClicked)}
@@ -50,32 +81,28 @@ function FancyButton(props) {
 }
 ```
 
-## Components example
-```jsx
-import {Scoped} from 'kremling'
+## Separate css file
+```js
+// foo.js
+import {useCss} from 'bandicoot'
+import css from './foo.css'
 
-function AnotherComponent() {
+function Foo(props) {
+  const scope = useCss(css)
+
   return (
-    <Scoped css={css}>
-      <div className="container">
-        <button className="big-button">
-          A big button
-        </button>
-      </div>
-    </Scoped>
+    <span {...scope} className="foo">
+      Hello
+    </span>
   )
 }
+```
 
-const css = `
-& .container {
-  border: 1px solid lightgray;
+```css
+/* foo.css */
+.foo {
+  color: lawngreen;
 }
-
-& .big-button {
-  width: 40px;
-  height: 60px;
-}
-`
 ```
 
 ## Motivation

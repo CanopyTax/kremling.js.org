@@ -4,10 +4,10 @@
 
 ## Walkthrough
 * [Getting Started](walkthrough/getting-started.md)
-* [Conditionally applying css](walkthrough/conditional-css.md)
-* [Using hooks](walkthrough/using-hooks.md)
-* [Using components](walkthrough/using-components.md)
-* [Preprocessing with webpack](walkthrough/build-processes.md)
+* [Conditionally apply css](walkthrough/conditional-css.md)
+* [Using hooks](/api/use-css.md)
+* [Class components](/api/scoped-component.md)
+* [Kremling loader](/walkthrough/kremling-loader.md)
 * [Configuration](walkthrough/configuration.md)
 
 ## API
@@ -17,4 +17,5 @@
 
 ## Concepts
 * [Scoped css](concepts/scoped-css.md)
-* [Namespace](concepts/namespace.md)
+* [Unmounting css](concepts/unmounting-css.md)
+* [Naming css classes](concepts/naming-css-classes.md)

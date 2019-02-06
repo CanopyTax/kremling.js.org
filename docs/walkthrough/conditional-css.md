@@ -1,5 +1,5 @@
 # Conditionally applying css
-Sometimes we need to change the css that we apply to a dom element, depending on the situation.
+Sometimes we need to change which css we apply to a dom element, depending on the state of our application.
 For example, we might have a `loading` css class that we only apply to a div when we're waiting for
 some data.
 
@@ -15,7 +15,7 @@ function LoadingData(props) {
   // We want the 'loading' css class to only be on the div when we're loading data.
   return (
     <div className={always("data").maybe("loading", props.isLoadingData)}>
-      Here is your data
+      Your data.
     </div>
   )
 }
@@ -31,6 +31,8 @@ const css = `
 `
 ```
 
+Now the background-color of our div will be white when there is data and light gray when we're waiting for data to load!
+
 ## How this works
-Check out the [these docs](api/always-maybe-and-toggle.md) for more detailed information
+Check out the [these docs](/api/always-maybe-and-toggle.md) for more detailed information
 on how this works.
