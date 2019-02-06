@@ -325,6 +325,125 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="scoped-component">Scoped component</h1>
+<p>Kremling exports a component called Scoped that can be used in your class or function components.
+The Scoped component appends your css to the dom and modifies its direct children so that they
+are containers for the <a href="../concepts/scoped-css.html">css scope</a>.</p>
+<p>If you are using function components and/or hooks, it is recommended that you use <a href="use-css.html"><code>useCss</code></a>
+instead of the Scoped component. However, feel free to use the Scoped component however you would like to - it
+is a fully supported feature of kremling that is part of kremling&apos;s long term future.</p>
+<h2 id="example">Example</h2>
+<p>To use the Scoped component, you should import it from kremling and render it around whichever
+dom elements you want your css to apply to:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {Scoped} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShoppingCart</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Scoped</span> <span class="hljs-attr">css</span>=<span class="hljs-string">{css}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;my-button&quot;</span>&gt;</span>
+            My button
+          <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Scoped</span>&gt;</span></span>
+    )
+  }
+}
+
+<span class="hljs-keyword">const</span> css = <span class="hljs-string">`
+&amp; .container {
+  border: 1px solid black;
+}
+
+&amp; .my-button {
+  background-color: brown;
+}
+`</span>
+</code></pre>
+<h2 id="advanced-example">Advanced example</h2>
+<p>Scoped css is applicable to all dom elements inside of the Scoped component. This means that css rules defined in parent components
+are available in children components. This can be desireable sometimes, and a double edged sword if it&apos;s unexpected. Here is how
+to use it to your advantage:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {Scoped} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Scoped</span> <span class="hljs-attr">css</span>=<span class="hljs-string">{css}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Child</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Scoped</span>&gt;</span>
+    )
+  }
+}
+
+const css = `
+&amp; .child-button {
+  background-color: orange;
+}
+`
+
+class Child extends React.Component {
+  render() {
+    // Child can use the child-button class because it is &quot;in the css scope.&quot;
+    return (
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;child-button&quot;</span>&gt;</span>
+        Child button
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    )
+  }
+}
+</span></code></pre>
+<h2 id="gotchas">Gotchas</h2>
+<p>The Scoped component modifies its direct children by adding dom attributes to them. Because of this, only direct children of Scoped
+that are dom elements will actually be part of the css scope.</p>
+<p>It is easy to forget this and can be difficult to debug. If you find yourself getting frustrated with this gotcha, try out the
+<a href="use-css.html">useCss hook</a>, whose syntax is more explicit in showing which dom elements are in the CSS scope.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> {Scoped} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;kremling&apos;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-comment">// Since Child is a direct child of Scoped and is not a dom element, the &quot;gotcha&quot; applies.</span>
+    <span class="hljs-comment">// This means that Child will not be able to use the css classes defined in Parent.</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Scoped</span> <span class="hljs-attr">css</span>=<span class="hljs-string">{css}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Child</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Scoped</span>&gt;</span>
+    )
+  }
+}
+
+const css = `
+&amp; .child-span {
+  border: 1px solid black;
+}
+`
+
+class Child extends React.Component {
+  render() {
+    // The child-span css class won&apos;t be &quot;in scope&quot; and won&apos;t work.
+    return (
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;child-span&quot;</span>&gt;</span>
+        Child span
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    )
+  }
+}
+</span></code></pre>
+<h2 id="api">API</h2>
+<h4 id="props">Props</h4>
+<ul>
+<li><code>css</code>: A css string that has ampersands (<code>&amp;</code>) in it before each css selector. The rules in this css string will
+apply to dom elements that are children of the Scoped component.</li>
+<li><code>postcss</code>: A PostCSS object created by <a href="../walkthrough/kremling-loader.html">kremling-loader</a>.</li>
+<li><code>children</code>: The direct children provided to Scoped will be modified to have extra dom attributes to do the
+<a href="../concepts/scoped-css.html">css scoping</a>. Direct children to Scoped should usually be dom elements, not React components.
+See the Gotcha section above.</li>
+</ul>
 
                                 
                                 </section>
@@ -368,7 +487,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Class components","level":"2.4","depth":1,"next":{"title":"Kremling loader","level":"2.5","depth":1,"path":"walkthrough/kremling-loader.md","ref":"walkthrough/kremling-loader.md","articles":[]},"previous":{"title":"Using hooks","level":"2.3","depth":1,"path":"api/use-css.md","ref":"api/use-css.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"api/scoped-component.md","mtime":"2019-02-06T18:34:22.520Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T18:35:09.418Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Class components","level":"2.4","depth":1,"next":{"title":"Kremling loader","level":"2.5","depth":1,"path":"walkthrough/kremling-loader.md","ref":"walkthrough/kremling-loader.md","articles":[]},"previous":{"title":"Using hooks","level":"2.3","depth":1,"path":"api/use-css.md","ref":"api/use-css.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","github","ga"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/CanopyTax/kremling"},"ga":{"configuration":"auto","token":"UA-133316058-1"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"api/scoped-component.md","mtime":"2019-02-06T18:35:37.390Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-06T18:36:21.173Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
