@@ -122,9 +122,9 @@ class Child extends React.Component {
 
 ## API
 #### Props
-- `css`: A css string that has ampersands (`&`) in it before each css selector. The rules in this css string will
-  apply to dom elements that are children of the Scoped component.
-- `postcss`: A PostCSS object created by [kremling-loader](/walkthrough/kremling-loader.md).
+- `css`: Either a css string or a postcss object (if you're using kremling-loader). A css string must have ampersands (`&`) in it before each css selector.
+  The rules in this css string will apply to dom elements that are children of the Scoped component. The postcss object must be generated
+  by [kremling-loader](/walkthrough/kremling-loader.md).
 - `children`: The direct children provided to Scoped will be modified to have extra dom attributes to do the
   [css scoping](/concepts/scoped-css.md). Direct children to Scoped should usually be dom elements, not React components.
   See the Gotcha section above.
