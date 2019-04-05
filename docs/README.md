@@ -92,7 +92,7 @@ function ClickHere(props) {
 ## Separate CSS file
 ```js
 // foo.js
-import {useCss} from 'bandicoot'
+import {useCss} from 'kremling'
 import css from './foo.css'
 
 function Foo(props) {
