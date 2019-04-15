@@ -8,12 +8,14 @@
 * [Using hooks](api/use-css.md)
 * [Class components](api/scoped-component.md)
 * [Kremling loader](walkthrough/kremling-loader.md)
+* [Kremling inline loader](walkthrough/kremling-inline-loader.md)
 * [Configuration](walkthrough/configuration.md)
 
 ## API
 * [useCss hook](api/use-css.md)
 * [Scoped component](api/scoped-component.md)
 * [always, maybe, and toggle](api/always-maybe-and-toggle.md)
+* [k tagged template](api/k-tagged-template.md)
 
 ## Concepts
 * [Naming css classes](concepts/naming-css-classes.md)
