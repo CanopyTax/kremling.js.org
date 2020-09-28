@@ -14,6 +14,7 @@
 * [useCss hook](api/use-css.md)
 * [Scoped component](api/scoped-component.md)
 * [always, maybe, and toggle](api/always-maybe-and-toggle.md)
+* [k](api/k.md)
 
 ## Concepts
 * [Naming css classes](concepts/naming-css-classes.md)
