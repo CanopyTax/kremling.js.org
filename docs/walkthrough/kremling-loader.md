@@ -10,6 +10,7 @@ Once you've set up kremling-loader, here is how you can write components with kr
 ```js
 import React from 'react'
 import css from './yoshi.css'
+import {useCss} from 'kremling'
 
 function Yoshi(props) {
   const scope = useCss(css)

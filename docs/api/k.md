@@ -10,7 +10,7 @@ Once you've added [kremling-babel-plugin](https://github.com/CanopyTax/kremling-
 #### yoshi.js
 ```js
 import React from 'react'
-import {k} from 'kremling'
+import {k, useCss} from 'kremling'
 
 function Yoshi(props) {
   const scope = useCss(css)
